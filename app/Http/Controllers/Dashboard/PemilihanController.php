@@ -40,14 +40,20 @@ class PemilihanController extends Controller
             $mahasiswa = Mahasiswa::where('user_id',\Auth::user()->id)->first();
             // di ambil id nya
             $id_mahasiswa = $mahasiswa->id;
+            // user_id
+            $user_id = Voting::where('user_id', $mahasiswa->user_id)->count();
+            // dd($user_id);
             // lalu dicek apa kah 'calon_ketua dan calon wakil' termasuk $id_mahasiswa . lalu di count (dihitung jumblah nya)
-            $cek = Kandidat::where('calon_ketua',$id_mahasiswa)->orWhere('calon_wakil',$id_mahasiswa)->count();
+            $cek = Kandidat::where('calon_ketua',$id_mahasiswa)
+                    ->orWhere('calon_wakil',$id_mahasiswa)->count();
             // dd($cek);
             if($cek > 0 ){
                 \Session::flash('gagal','Kamu dilarang ikut Pemilu');
                 return redirect()->back();
+            }elseif($user_id > 0){
+                \Session::flash('gagal','Kamu sudah memilih');
+                return redirect()->back();
             }else{
-    
                 // $data = new Voting;
                 // $data->kandidat_id = $id;
                 // $data->user_id = \Auth::user()->id;

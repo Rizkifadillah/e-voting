@@ -55,6 +55,7 @@ class MahasiswaController extends Controller
         $user->role = 1;
         $user->name = $nama;
         $user->email = $email;
+        $user->photo = $photo;
         $user->password = bcrypt($password);
         $user->save();
 

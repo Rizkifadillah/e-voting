@@ -17,7 +17,8 @@ class CreateTableKandidat extends Migration
             $table->increments('id');
             $table->integer('calon_ketua')->unsigned();
             $table->integer('calon_wakil')->unsigned();
-            $table->text('visi_misi');
+            $table->text('visi');
+            $table->text('misi');
             $table->timestamps();
 
             $table->foreign('calon_ketua')->references('id')->on('m_mahasiswa')->onDelete('restrict');

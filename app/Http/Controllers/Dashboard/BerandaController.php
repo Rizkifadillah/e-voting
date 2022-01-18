@@ -24,7 +24,7 @@ class BerandaController extends Controller
 
             $a['name'] = 'No Urut:'.$no_urut;
             $a['y'] = $total;
-            array_push($hasil, $a);
+            $data = array_push($hasil, $a);
             // dd($a);
         }
 
